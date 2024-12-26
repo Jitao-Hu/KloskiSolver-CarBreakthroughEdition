@@ -105,9 +105,6 @@ def neighbors(cars_array: Tuple[Car]):
             for steps in range(1, 2):  # Steps of 1
                 temp_car = copy.deepcopy(car)  # Clone the car to avoid mutating the original
                 temp_car.move(direction, steps)
-                # print(temp_car.startingPoint)
-                # print(car.startingPoint)
-                # Clone the cars array
                 temp_cars_array = list(cars_array)
                 temp_cars_array[index] = temp_car
                 temp_cars_array = tuple(temp_cars_array)  # Convert back to a tuple for hashing
@@ -116,14 +113,10 @@ def neighbors(cars_array: Tuple[Car]):
                 gw.initGrid()
                 if gw.generateGrid(temp_cars_array) == 0:  # Check if the grid is valid
                     result.append(temp_cars_array)
-                    # gw.printGrid()
-                # else:
-                    # print("\nfailed\n___________\n")
     
     return result
 
 def heuristic(cars: Tuple[Car], goal: Tuple[Car]):
-    # Compute heuristic as Manhattan distance for the goal car
     temp_car = None
     goal_car = None
     for car in cars:
@@ -140,10 +133,10 @@ def distance(node1, node2):
     # All edges have weight 1
     return 1
 
-startingPoint = [[0,0], [1,1], [2,2],[0, 3]]
-carLen = [2, 3, 2, 2]
-orientations = [1, 1, 1, 1]
-upDownLeftRight = [0, 0, 1, 0]
+startingPoint = [[3,0], [3,1], [3,4],[1, 3]]
+carLen = [3, 3, 2, 2]
+orientations = [1, 0, 0, 1]
+upDownLeftRight = [0, 1, 1, 0]
 goalCar = [0, 0, 0, 1]
 startCars = []
 
@@ -158,16 +151,11 @@ goalCar = [1]
 
 goalCars = [Car(startingPoint[0], carLen[0], orientations[0], upDownLeftRight[0], goalCar[0])]
 
-# Define start and goal states as tuples
 start_cars = tuple(startCars)  # Convert list of cars to tuple for hashing
-goal_cars = tuple(goalCars)   # Convert list of goal cars to tuple for hashing
+goal_cars = tuple(goalCars)
 
-# neighbors(start_cars)
-
-# Run A*
 path = a_star(start_cars, goal_cars, neighbors, heuristic, distance)
 
-# Print the result
 if path:
     print("Path found:")
     for step in path:
