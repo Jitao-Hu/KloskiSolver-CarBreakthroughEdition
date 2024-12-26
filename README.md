@@ -27,8 +27,11 @@ The starting state could vary in the number and arrangement of blocks, and the f
 A representation of this game is implemented and the A* algorithm is applied to solve for the solution.
 
 # Sample Usage
-TBD
+1. Clone the repo
+2. Under the root directory run `python3 main.py`
+3. If a path is found, then the program will print `Path found!` and generate the visualized solution to `./grid_steps`
+4. If there is no solution, the program will print `No path found!` and then return
 
 # Context
 A small and nerdy project inspired by my cousin's Christmas gift.
-Open to discuss and chat :)
+Open to discussing and chatting :)
