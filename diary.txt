@@ -1,0 +1,12 @@
+** use grid world vs use car class
+use both probably
+grid world is the base, uses array of cars for different games, and then insert to the grid world
+
+** try to use A* to solve this problem
+
+an array of cars, 
+    for each car: 
+        - if it is horizontal, it can be moved left or right
+        - if it is vertical, it can be moved up or down
+        this needs to be decided within the grid world
+
