@@ -37,10 +37,10 @@ if path:
         gw = GridWorld()
         gw.generateGrid(step)
         grids.append(np.array(gw.grid))
+    # Output directory
+    outputDir = "grid_steps"
+    visualizeSteps(grids, outputDir)
+    print(f"Images saved in '{outputDir}' directory.")
 else:
     print("No path found!")
-
-# Output directory
-outputDir = "grid_steps"
-visualizeSteps(grids, outputDir)
-print(f"Images saved in '{outputDir}' directory.")
+    
