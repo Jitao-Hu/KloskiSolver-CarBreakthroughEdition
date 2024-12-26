@@ -91,7 +91,6 @@ class GridWorld:
         if self.goalCarCounter != 0:
             envLogger.debug("Can't insert more than 1 goal car")
             return 1
-        # car.goalCar = 1
         error = self.insertCar(car)
         self.goalCarCounter += 1
         return error
