@@ -1,6 +1,7 @@
 import matplotlib.pyplot as plt
 import matplotlib.colors as mcolors
 import numpy as np
+import os
 
 def pointWithinGrid(x, y):
     if (not (0 <= x <= 5)) or (not (0 <= y <= 5)) :
@@ -41,3 +42,34 @@ def create_combined_colormap(grid):
         combined_colormap[val] = color
 
     return combined_colormap
+
+def visualizeSteps(grids, outputDir):
+    os.makedirs(outputDir, exist_ok=True)
+    # Visualize each step and save as an image
+    for i, grid in enumerate(grids):
+        # Create a combined colormap for the current grid
+        colormap = create_combined_colormap(grid)
+
+        # Map grid values to color indices
+        color_grid = np.array([[mcolors.to_rgba(colormap[val]) for val in row] for row in grid])
+
+        # Create the plot
+        fig, ax = plt.subplots(figsize=(6, 6))
+        ax.imshow(color_grid, extent=[0, 6, 0, 6])
+
+        # Add grid lines
+        ax.set_xticks(np.arange(0, 6, 1))
+        ax.set_yticks(np.arange(0, 6, 1))
+        ax.grid(color="black", linestyle="-", linewidth=1)
+
+        # Remove axis labels
+        ax.set_xticklabels([])
+        ax.set_yticklabels([])
+
+        # Title for visualization
+        title = "init" if i == 0 else f"step{i}"
+        ax.set_title(title.capitalize())
+
+        # Save the figure
+        plt.savefig(os.path.join(outputDir, f"{title}.png"))
+        plt.close(fig)
